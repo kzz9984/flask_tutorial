@@ -12,7 +12,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
     <!-- Bootstrap 5, crypto-js and custom JS script tags-->
     <!-- Include 'defer' keyword for each to improve loading-->
@@ -30,7 +30,7 @@
         <!-- lg = large breakpoint, headerBG = custom css BG color -->
         <div class="container"> <!-- Container will contain content in certain space in middle of page -->
             <a href="#" class="navbar-brand">
-                <img src="/img/Built_with_Firebase_Logo_LightTP.png" alt="Built wtih Firebase" class="d-inline-block align-text-top">
+                <img src="{{url_for('static', filename='/img/Built_with_Firebase_Logo_LightTP.png')}}" alt="Built wtih Firebase" class="d-inline-block align-text-top">
             </a>
 
             <!-- Hamburger Menu Button-->
@@ -43,10 +43,10 @@
                 <!-- Links to hamburger menu button -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item nbMenuItem">
-                        <a href="register.html" class="nav-link hover-underline-animation">Sign Up</a>
+                        <a href="{{url_for('register')}}" class="nav-link hover-underline-animation">Sign Up</a>
                     </li>
                     <li class="nav-item nbMenuItem">
-                        <a href="signIn.html" class="nav-link hover-underline-animation">Sign In</a>
+                        <a href="{{url_for('signIn')}}" class="nav-link hover-underline-animation">Sign In</a>
                     </li>
                 </ul>
             </div>
