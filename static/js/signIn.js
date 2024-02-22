@@ -14,13 +14,13 @@ import { getDatabase, ref, set, update, child, get }
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC5bFAmCljLOQ4x7Bg53cuO39WlDeYbacU",
-  authDomain: "kz-fd-rtd-demo.firebaseapp.com",
-  databaseURL: "https://kz-fd-rtd-demo-default-rtdb.firebaseio.com",
-  projectId: "kz-fd-rtd-demo",
-  storageBucket: "kz-fd-rtd-demo.appspot.com",
-  messagingSenderId: "816016741339",
-  appId: "1:816016741339:web:97b844231d9a55ab850dfe"
+  apiKey: "AIzaSyAODXbGFTsNsiJf_J-iJWIqGFYKZzMPowQ",
+  authDomain: "flask-tutorial-5dc4d.firebaseapp.com",
+  databaseURL: "https://flask-tutorial-5dc4d-default-rtdb.firebaseio.com",
+  projectId: "flask-tutorial-5dc4d",
+  storageBucket: "flask-tutorial-5dc4d.appspot.com",
+  messagingSenderId: "225238122480",
+  appId: "1:225238122480:web:d022063162031fd147e735"
 };
 
 // Initialize Firebase
