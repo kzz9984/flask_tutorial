@@ -45,7 +45,8 @@
                         <a  id="userLink" class="nav-link" href="">User Name</a>
                     </li>
                     <li class="nav-item nbMenuItem">
-                        <a  id="signOut" class="nav-link hover-underline-animation" href="">Sign Out</a>
+                        <a  id="signOut" class="nav-link hover-underline-animation"
+                            href="{{ url_for('index') }}?next={{ request.path }}">Sign Out</a>
                     </li>
                 </ul>
             </div>

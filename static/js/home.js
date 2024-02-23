@@ -60,13 +60,13 @@ function SignOutUser(){
   localStorage.removeItem('user');    // Clear local storage of user
   localStorage.removeItem('keepLoggedIn');
 
-  signOutLink(auth).then(() => {
+  signOutLink(auth).then(() => {      // Sign-out from FRD
       // Sign-out successful
     }).catch((error) => {
       // Error occurred
     });
   
-  window.location = "home.html"
+  window.location = "index"           // Redirect to landing page
 }
 
 // ------------------------Set (insert) data into FRD ------------------------

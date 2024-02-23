@@ -31,7 +31,6 @@ const auth = getAuth(); // Firebase authentication
 // Return an instance of the database associated with your app
 const db = getDatabase(app);
 
-
 // ---------------------- Sign-In User ---------------------------------------//
 
 document.getElementById('signIn').onclick = function(){
@@ -61,7 +60,7 @@ document.getElementById('signIn').onclick = function(){
           get(ref(db, 'users/' + user.uid + '/accountInfo')).then((snapshot)=>{
             if (snapshot.exists()){
                 console.log(snapshot.val());
-                logIn(snapshot.val());      // login function will keep user signed in
+                logIn(snapshot.val(), firebaseConfig);      // login function will keep user signed in
             } else {
                 console.log("User does not exist")
             }
@@ -83,15 +82,26 @@ document.getElementById('signIn').onclick = function(){
 
 // ---------------- Keep User Logged In ----------------------------------//
 
-function logIn(user){
+function logIn(user, fbcfg){  // User = user info, fbcfg = Firebase configuration
     let keepLoggedIn = document.getElementById('keepLoggedInSwitch').ariaChecked;
+
+    fbcfg.userID = user.uid;  // Add userID to FB configuration so that is passed to Flask
 
     // Session storage is temporary (only while active session)
     // Info. saved as a string (must convert JS object to string)
     // Session storage will be cleared with a signOut() function in home.js file
     if(!keepLoggedIn){
         sessionStorage.setItem('user', JSON.stringify(user));
-        window.location="home.html" // Redirect browser to home.html
+
+        // Send Firebase configuration and unique user ID to app.py using POST method
+        fetch('/test', {
+          "method": "POST",
+          "headers": {"Content-Type": "application/json"},
+          "body": JSON.stringify(fbcfg),
+        })
+
+        //alert(fbcfg);             // Debug only
+        window.location="home"      // Redirect browser to home.html
     }
 
     // Local storage is permanent (keep user logged in if browser is closed)
@@ -99,6 +109,15 @@ function logIn(user){
     else{
         localStorage.setItem('keepLoggedIn', 'yes');
         localStorage.setItem('user', JSON.stringify(user));
-        window.location="home.html" // Redirect browser to home.html
+
+        // Send Firebase configuration and unique user ID to app.py using POST method
+        fetch('/test', {
+          "method": "POST",
+          "headers": {"Content-Type": "application/json"},
+          "body": JSON.stringify(fbcfg),
+        })
+        
+        //alert(fbcfg);                  // Debug only
+        window.location="home"           // Redirect browser to home.html via /home route in app.py
     }
 }
