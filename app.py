@@ -43,7 +43,7 @@ def test():
 
     global config, userID, db, timeStamp, key
 
-    # POST request (FB configuration sent from login.js, request.method)
+    # POST request (FB configuration sent from login.js)
     if request.method == 'POST':
 
         # Each data set will be stored under its own child node identified the timestamp
@@ -73,14 +73,26 @@ def test():
         return 'Success', 200
 
     # If a GET request is made, check to see if the FB configuration has been provided. If not,
-    # do nothing. If so, update the firesbase with the sensor data.
-    #else:
-        #if(bool(config) is false):      # If config is empty, bool(config) returns false
-        #    print('FB config is empty')
+    # do nothing. If so, update the Firesbase with the sensor data.
+    else:
+        if(bool(config) == False):      # If config is empty, bool(config) returns false
+            print('FB config is empty')
     
-        # Code to get data from Arduino will go here
+        else:
+            # Take parameters from Arduino request & assign value to variable "value"
 
-    #    return "Success"
+            #print(config)
+            value = request.args.get('distance')
+
+            print('Distance: ' + value, flush = True)
+
+            # Write arduino data to Firebase
+            db.child('user/' + userID + '/data/' + '/' + timeStamp).update({key:value})
+
+            # Increment key
+            key += 1
+
+        return "Success"
 
 # Run server on local IP address on port 5000
 if __name__ == "__main__":
